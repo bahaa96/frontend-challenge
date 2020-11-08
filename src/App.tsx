@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch, RouteProps } from 'react-router-dom';
+import { ROUTES } from './routes';
+import 'antd/dist/antd.css';
 
-function App() {
+
+import './api/injectApiMock'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        {
+          ROUTES.map((routeProps: RouteProps, index: number) => {
+            return (
+              <Route {...routeProps} key={index} />
+            )
+          })
+        }
+      </Switch>
+    </BrowserRouter>
   );
 }
 
